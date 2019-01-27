@@ -16,12 +16,16 @@ class ViewController: UIViewController, AVAudioPlayerDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
     }
-
-
-
+    
+    
     @IBAction func notePressed(_ sender: UIButton) {
-        let noteTag = sender.tag
-        let soundURL = Bundle.main.url(forResource: "note" + String(noteTag), withExtension: "wav")
+        let noteTag: String = String(sender.tag)
+        playSound(noteTag)
+    }
+    
+    
+    fileprivate func playSound(_ noteTag: String) {
+        let soundURL = Bundle.main.url(forResource: "note" + noteTag, withExtension: "wav")
         
         do {
             audioPlayer = try AVAudioPlayer(contentsOf: soundURL!)
